@@ -87,6 +87,14 @@ export default {
       description: "This or `trail_price` is required if type is `trailing_stop`",
       optional: true,
     },
+    extendedHours: {
+      type: "string",
+      label: "Extended Hours",
+      description: "This is optional if type is 'limit'",
+      optional: true,
+    },
+
+    }
   },
   async run ({ $ }) {
     if (!this.qty && !this.notional) {
@@ -118,6 +126,7 @@ export default {
         stop_price: this.stopPrice,
         trail_price: this.trailPrice,
         trail_percent: this.trailPercent,
+        extended_hours: this.extendedHours,
       },
     });
     $.export("$summary", `Order(ID:${response.id}) has been placed.`);
